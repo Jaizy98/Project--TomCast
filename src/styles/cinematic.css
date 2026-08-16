@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Cinematic Visual Storytelling, Scene Transitions & Atmosphere
+   ========================================================================== */
+
+/* Scene Container & Ambient Stage */
+.cinematic-stage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-deep);
+  overflow: hidden;
+}
+
+/* Background Scene Layers with Cross-Fade / Parallax */
+.scene-bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.scene-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(3, 8, 5, 0.35) 0%, rgba(3, 8, 5, 0.82) 80%, #030805 100%);
+  pointer-events: none;
+}
+
+.scene-gradient-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 280px;
+  background: linear-gradient(to top, #030805 0%, rgba(3, 8, 5, 0.8) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Rain Condensation Glass Effect (Image 2 style) */
+.rain-glass-overlay {
+  position: relative;
+  background: rgba(10, 20, 14, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.rain-glass-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.12), transparent 60%);
+  pointer-events: none;
+}
+
+/* Editorial Masked Typography (Image 3 style) */
+.editorial-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.95;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.text-masked-bg {
+  background: linear-gradient(135deg, #ffffff 30%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-masked-nature {
+  background-image: url('../assets/field_hero.jpg');
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: contrast(130%) brightness(120%);
+}
+
+/* Leaf Diagnostic Bounding Box HUD */
+.leaf-inspector-container {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ai-bounding-box {
+  position: absolute;
+  border: 1.5px solid #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.ai-bounding-box.weed {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.14);
+}
+
+.ai-bounding-box.healthy {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.14);
+}
+
+.ai-bounding-box:hover {
+  background: rgba(239, 68, 68, 0.28);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
+  transform: scale(1.02);
+}
+
+.ai-box-tag {
+  position: absolute;
+  top: -24px;
+  left: -1px;
+  background: #ef4444;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px 4px 0 0;
+  white-space: nowrap;
+}
+
+.ai-bounding-box.weed .ai-box-tag {
+  background: #f59e0b;
+  color: #030805;
+}
+
+.ai-bounding-box.healthy .ai-box-tag {
+  background: #10b981;
+  color: #030805;
+}
+
+/* Radar Scan Beam */
+.radar-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(16, 185, 129, 0.3) 0deg, transparent 60deg, transparent 360deg);
+  animation: radar-rotate 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes radar-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Grid overlay */
+.hud-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Live Pulse Dot */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.7;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Floating Navigation Bar removed — replaced by side drawer */
