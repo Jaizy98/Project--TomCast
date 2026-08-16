@@ -1,0 +1,19 @@
+path: /kaggle/working/tomato_weed_13class
+train: images/train
+val: images/val
+test: images/test
+nc: 13
+names:
+  0: tomato_leaf
+  1: amaranthus_palmeri
+  2: amaranthus_tuberculatus
+  3: ambrosia_artemisiifolia
+  4: eclipta
+  5: eleusine_indica
+  6: euphorbia_maculata
+  7: ipomoea_indica
+  8: mollugo_verticillata
+  9: physalis_angulata
+  10: portulaca_oleracea
+  11: senna_obtusifolia
+  12: sida_rhombifolia
